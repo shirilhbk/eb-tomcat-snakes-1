@@ -13,7 +13,19 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
+- script: ls -al && pwd
+
+- script: sudo apt update && sudo apt install openjdk-8-jdk
+  displayName: 'installing openjdk'
+
+- script: ./build.sh
+  displayName: 'run the build script'
+  
+- script: mv ROOT.war ROOT$(Build.BuildID).war && ls -al
+  displayName: 'list files & rename ROOT.war'
+
+  settings
+  
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
